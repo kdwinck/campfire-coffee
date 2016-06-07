@@ -5,16 +5,35 @@ var pikePlace = {
   maxCust: 35,
   cupsPerCust: 1.2,
   poundsPerCust: .34,
+  totalCustomers: 0,
+  totalCups: 0,
+  totalPounds: 0,
+
   custPerHour: [],
   cupsPerHour: [],
   poundsPerHour: [],
+
   avgCustPerHour: function() {
     for (item in this.hours) {
       customers = Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
       this.custPerHour.push(customers);
+      this.totalCustomers += customers;
+    }
+  },
+
+  calcCupsPerHour: function() {
+    for (item in this.custPerHour) {
+      cupsPerHour = Math.ceil(this.custPerHour[item] * this.cupsPerCust);
+      this.cupsPerHour.push(cupsPerHour);
+      this.totalCups += cupsPerHour;
     }
   }
+
 };
 
 pikePlace.avgCustPerHour();
 console.log(pikePlace.custPerHour);
+console.log(pikePlace.totalCustomers);
+pikePlace.calcCupsPerHour();
+console.log(pikePlace.cupsPerHour);
+console.log(pikePlace.totalCups);
