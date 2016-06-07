@@ -12,6 +12,7 @@ var pikePlace = {
   custPerHour: [],
   cupsPerHour: [],
   poundsPerHour: [],
+  employeesNeeded: [],
 
   avgCustPerHour: function() {
     for (item in this.hours) {
@@ -35,6 +36,13 @@ var pikePlace = {
       this.poundsPerHour.push(poundsPerHour);
       this.totalPounds += poundsPerHour;
     }
+  },
+
+  calcEmployeesPerHour: function() {
+    for(value in this.custPerHour) {
+      employees = Math.ceil(this.custPerHour[value] / 30);
+      this.employeesNeeded.push(employees);
+    }
   }
 
 };
@@ -50,3 +58,6 @@ console.log(pikePlace.totalCups);
 pikePlace.calcPoundsPerHour();
 console.log(pikePlace.poundsPerHour);
 console.log(pikePlace.totalPounds);
+
+pikePlace.calcEmployeesPerHour();
+console.log(pikePlace.employeesNeeded);
