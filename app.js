@@ -23,9 +23,17 @@ var pikePlace = {
 
   calcCupsPerHour: function() {
     for (item in this.custPerHour) {
-      cupsPerHour = Math.ceil(this.custPerHour[item] * this.cupsPerCust);
+      cupsPerHour = parseFloat((this.custPerHour[item] * this.cupsPerCust).toFixed(1));
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
+    }
+  },
+
+  calcPoundsPerHour: function() {
+    for(item in this.custPerHour) {
+      poundsPerHour = parseFloat((this.custPerHour[item] * this.poundsPerCust).toFixed(1));
+      this.poundsPerHour.push(poundsPerHour);
+      this.totalPounds += poundsPerHour;
     }
   }
 
@@ -34,6 +42,11 @@ var pikePlace = {
 pikePlace.avgCustPerHour();
 console.log(pikePlace.custPerHour);
 console.log(pikePlace.totalCustomers);
+
 pikePlace.calcCupsPerHour();
 console.log(pikePlace.cupsPerHour);
 console.log(pikePlace.totalCups);
+
+pikePlace.calcPoundsPerHour();
+console.log(pikePlace.poundsPerHour);
+console.log(pikePlace.totalPounds);
