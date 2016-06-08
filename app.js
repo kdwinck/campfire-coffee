@@ -9,7 +9,8 @@ var pikePlace = {
 
   totalCustomers: 0,
   totalCups: 0,
-  totalPounds: 0,
+  packagedPounds: 0,
+  dailyPounds: 0,
 
   custPerHour: [],
   cupsPerHour: [],
@@ -38,7 +39,7 @@ var pikePlace = {
     for(item in this.custPerHour) {
       poundsPerHour = parseFloat((this.custPerHour[item] * this.poundsPerCust).toFixed(1));
       this.poundsPerHour.push(poundsPerHour);
-      this.totalPounds += poundsPerHour;
+      this.packagedPounds += poundsPerHour;
     }
   },
 
@@ -58,8 +59,9 @@ var pikePlace = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var totalPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
-      this.totalPoundsPerHour.push(totalPounds);
+      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      this.totalPoundsPerHour.push(hourlyPounds);
+      this.dailyPounds += hourlyPounds;
     }
   },
 
@@ -81,10 +83,29 @@ var pikePlace = {
     var parent = document.getElementById('list');
     for (value in this.hours) {
       var child = document.createElement('li');
-      // 6:00am: 86.4 lbs [23 customers, 27.6 cups (1.4 lbs), 85 lbs to-go]
       child.textContent = this.hours[value] + ': ' + this.totalPoundsPerHour[value] + ' lbs [' + this.custPerHour[value] + ' customers, ' + this.cupsPerHour[value] + ' cups (' + this.cupsPerPound[value] + ' lbs), ' + this.poundsPerHour[value] + ' lbs-to-go]',
       parent.appendChild(child);
     }
+  },
+
+  createListTotals: function() {
+    var parent = document.getElementById('list');
+    var child = document.createElement('li');
+    // append total custsomers
+    child.textContent = 'Total customers at ' + this.name + ': ' + Math.ceil(this.totalCustomers);
+    parent.appendChild(child);
+    // append total cups
+    child = document.createElement('li');
+    child.textContent = 'Total cups sold at ' + this.name + ': ' + Math.ceil(this.totalCups);
+    parent.appendChild(child);
+    // append total packaged pounds
+    child = document.createElement('li');
+    child.textContent = 'Total to-go pound packages sold at ' + this.name + ': ' + (this.packagedPounds).toFixed(1);
+    parent.appendChild(child);
+    // append daily pounds total
+    child = document.createElement('li');
+    child.textContent = 'Total Pounds of beans needed at ' + this.name + ': ' + (this.dailyPounds).toFixed(1);
+    parent.appendChild(child);
   }
 };
 
@@ -122,3 +143,4 @@ console.log(pikePlace.totalPoundsPerHour);
 pikePlace.displayName();
 pikePlace.createList();
 pikePlace.createListItems();
+pikePlace.createListTotals();
