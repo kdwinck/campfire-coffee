@@ -1,5 +1,6 @@
 // create Pike Place Coffee shop
 var pikePlace = {
+
   name: 'Pike Place Market',
   hours: ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'],
   minCust: 14,
@@ -106,41 +107,20 @@ var pikePlace = {
     child = document.createElement('li');
     child.textContent = 'Total Pounds of beans needed at ' + this.name + ': ' + (this.dailyPounds).toFixed(1);
     parent.appendChild(child);
+  },
+
+  theBigOne: function() {
+    this.avgCustPerHour();
+    this.calcCupsPerHour();
+    this.calcPoundsPerHour();
+    this.calcCupsPerPound();
+    this.calcEmployeesPerHour();
+    this.calcTotalPoundsPerHour();
+    this.displayName();
+    this.createList();
+    this.createListItems();
+    this.createListTotals();
   }
 };
 
-
-pikePlace.avgCustPerHour();
-console.log('customers per hour');
-console.log(pikePlace.custPerHour);
-console.log('total customers');
-console.log(pikePlace.totalCustomers);
-
-pikePlace.calcCupsPerHour();
-console.log('cups per hour');
-console.log(pikePlace.cupsPerHour);
-console.log('total cups');
-console.log(pikePlace.totalCups);
-
-pikePlace.calcPoundsPerHour();
-console.log('pounds per hour');
-console.log(pikePlace.poundsPerHour);
-console.log('total pounds');
-console.log(pikePlace.totalPounds);
-
-pikePlace.calcCupsPerPound();
-console.log('cups sold in pounds');
-console.log(pikePlace.cupsPerPound);
-
-pikePlace.calcEmployeesPerHour();
-console.log('employees needed each hour');
-console.log(pikePlace.employeesNeeded);
-
-pikePlace.calcTotalPoundsPerHour();
-console.log('total pounds per hour');
-console.log(pikePlace.totalPoundsPerHour);
-
-pikePlace.displayName();
-pikePlace.createList();
-pikePlace.createListItems();
-pikePlace.createListTotals();
+pikePlace.theBigOne();
