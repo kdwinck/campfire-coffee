@@ -28,25 +28,18 @@ var pikePlace = {
     }
   },
 
-  calcCupsPerHour: function() {
+  calcHourlyValues: function() {
     for (value in this.custPerHour) {
+      // calculate cups of coffee sold per hour
       cupsPerHour = Math.round((this.custPerHour[value] * this.cupsPerCust) * 10) / 10;
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
-    }
-  },
-
-  calcPoundsPerHour: function() {
-    for(value in this.custPerHour) {
-      poundsPerHour = parseFloat((this.custPerHour[value] * this.poundsPerCust).toFixed(1));
+      // calculate packaged coffee sold per hour
+      poundsPerHour = Math.round((this.custPerHour[value] * this.poundsPerCust) * 10) / 10;
       this.poundsPerHour.push(poundsPerHour);
       this.packagedPounds += poundsPerHour;
-    }
-  },
-
-  calcCupsPerPound: function() {
-    for (value in this.cupsPerHour) {
-      cupsInPounds = parseFloat((this.cupsPerHour[value] / 16).toFixed(1));
+      // calculate cups in terms of pounds
+      cupsInPounds = Math.round((this.cupsPerHour[value] / 16) * 10) / 10;
       this.cupsPerPound.push(cupsInPounds);
     }
   },
@@ -60,7 +53,7 @@ var pikePlace = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      var hourlyPounds = Math.round((this.cupsPerPound[value] + this.poundsPerHour[value]) * 10 ) / 10;
       this.totalPoundsPerHour.push(hourlyPounds);
       this.dailyPounds += hourlyPounds;
     }
@@ -111,9 +104,9 @@ var pikePlace = {
 
   theBigOne: function() {
     this.avgCustPerHour();
-    this.calcCupsPerHour();
-    this.calcPoundsPerHour();
-    this.calcCupsPerPound();
+    this.calcHourlyValues();
+    // this.calcPoundsPerHour();  added these to calcHourlyValues method
+    // this.calcCupsPerPound();
     this.calcEmployeesPerHour();
     this.calcTotalPoundsPerHour();
     this.displayName();
@@ -153,25 +146,18 @@ var capHill = {
     }
   },
 
-  calcCupsPerHour: function() {
-    for (item in this.custPerHour) {
-      cupsPerHour = Math.round((this.custPerHour[item] * this.cupsPerCust) * 10) / 10;
+  calcHourlyValues: function() {
+    for (value in this.custPerHour) {
+      // calculate cups of coffee sold per hour
+      cupsPerHour = Math.round((this.custPerHour[value] * this.cupsPerCust) * 10) / 10;
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
-    }
-  },
-
-  calcPoundsPerHour: function() {
-    for(item in this.custPerHour) {
-      poundsPerHour = parseFloat((this.custPerHour[item] * this.poundsPerCust).toFixed(1));
+      // calculate packaged coffee sold per hour
+      poundsPerHour = Math.round((this.custPerHour[value] * this.poundsPerCust) * 10) / 10;
       this.poundsPerHour.push(poundsPerHour);
       this.packagedPounds += poundsPerHour;
-    }
-  },
-
-  calcCupsPerPound: function() {
-    for (value in this.cupsPerHour) {
-      cupsInPounds = parseFloat((this.cupsPerHour[value] / 16).toFixed(1));
+      // calculate cups in terms of pounds
+      cupsInPounds = Math.round((this.cupsPerHour[value] / 16) * 10) / 10;
       this.cupsPerPound.push(cupsInPounds);
     }
   },
@@ -185,7 +171,7 @@ var capHill = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      var hourlyPounds = Math.round((this.cupsPerPound[value] + this.poundsPerHour[value]) * 10 ) / 10;
       this.totalPoundsPerHour.push(hourlyPounds);
       this.dailyPounds += hourlyPounds;
     }
@@ -236,9 +222,7 @@ var capHill = {
 
   theBigOne: function() {
     this.avgCustPerHour();
-    this.calcCupsPerHour();
-    this.calcPoundsPerHour();
-    this.calcCupsPerPound();
+    this.calcHourlyValues();
     this.calcEmployeesPerHour();
     this.calcTotalPoundsPerHour();
     this.displayName();
@@ -278,25 +262,18 @@ var seattleLibrary = {
     }
   },
 
-  calcCupsPerHour: function() {
+  calcHourlyValues: function() {
     for (value in this.custPerHour) {
+      // calculate cups of coffee sold per hour
       cupsPerHour = Math.round((this.custPerHour[value] * this.cupsPerCust) * 10) / 10;
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
-    }
-  },
-
-  calcPoundsPerHour: function() {
-    for(value in this.custPerHour) {
-      poundsPerHour = parseFloat((this.custPerHour[value] * this.poundsPerCust).toFixed(1));
+      // calculate packaged coffee sold per hour
+      poundsPerHour = Math.round((this.custPerHour[value] * this.poundsPerCust) * 10) / 10;
       this.poundsPerHour.push(poundsPerHour);
       this.packagedPounds += poundsPerHour;
-    }
-  },
-
-  calcCupsPerPound: function() {
-    for (value in this.cupsPerHour) {
-      cupsInPounds = parseFloat((this.cupsPerHour[value] / 16).toFixed(1));
+      // calculate cups in terms of pounds
+      cupsInPounds = Math.round((this.cupsPerHour[value] / 16) * 10) / 10;
       this.cupsPerPound.push(cupsInPounds);
     }
   },
@@ -310,7 +287,7 @@ var seattleLibrary = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      var hourlyPounds = Math.round((this.cupsPerPound[value] + this.poundsPerHour[value]) * 10 ) / 10;
       this.totalPoundsPerHour.push(hourlyPounds);
       this.dailyPounds += hourlyPounds;
     }
@@ -361,9 +338,7 @@ var seattleLibrary = {
 
   theBigOne: function() {
     this.avgCustPerHour();
-    this.calcCupsPerHour();
-    this.calcPoundsPerHour();
-    this.calcCupsPerPound();
+    this.calcHourlyValues();
     this.calcEmployeesPerHour();
     this.calcTotalPoundsPerHour();
     this.displayName();
@@ -403,25 +378,18 @@ var southLakeUnion = {
     }
   },
 
-  calcCupsPerHour: function() {
+  calcHourlyValues: function() {
     for (value in this.custPerHour) {
+      // calculate cups of coffee sold per hour
       cupsPerHour = Math.round((this.custPerHour[value] * this.cupsPerCust) * 10) / 10;
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
-    }
-  },
-
-  calcPoundsPerHour: function() {
-    for(value in this.custPerHour) {
-      poundsPerHour = parseFloat((this.custPerHour[value] * this.poundsPerCust).toFixed(1));
+      // calculate packaged coffee sold per hour
+      poundsPerHour = Math.round((this.custPerHour[value] * this.poundsPerCust) * 10) / 10;
       this.poundsPerHour.push(poundsPerHour);
       this.packagedPounds += poundsPerHour;
-    }
-  },
-
-  calcCupsPerPound: function() {
-    for (value in this.cupsPerHour) {
-      cupsInPounds = parseFloat((this.cupsPerHour[value] / 16).toFixed(1));
+      // calculate cups in terms of pounds
+      cupsInPounds = Math.round((this.cupsPerHour[value] / 16) * 10) / 10;
       this.cupsPerPound.push(cupsInPounds);
     }
   },
@@ -435,7 +403,7 @@ var southLakeUnion = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      var hourlyPounds = Math.round((this.cupsPerPound[value] + this.poundsPerHour[value]) * 10) / 10;
       this.totalPoundsPerHour.push(hourlyPounds);
       this.dailyPounds += hourlyPounds;
     }
@@ -486,9 +454,7 @@ var southLakeUnion = {
 
   theBigOne: function() {
     this.avgCustPerHour();
-    this.calcCupsPerHour();
-    this.calcPoundsPerHour();
-    this.calcCupsPerPound();
+    this.calcHourlyValues();
     this.calcEmployeesPerHour();
     this.calcTotalPoundsPerHour();
     this.displayName();
@@ -528,25 +494,18 @@ var seaTac = {
     }
   },
 
-  calcCupsPerHour: function() {
+  calcHourlyValues: function() {
     for (value in this.custPerHour) {
+      // calculate cups of coffee sold per hour
       cupsPerHour = Math.round((this.custPerHour[value] * this.cupsPerCust) * 10) / 10;
       this.cupsPerHour.push(cupsPerHour);
       this.totalCups += cupsPerHour;
-    }
-  },
-
-  calcPoundsPerHour: function() {
-    for(value in this.custPerHour) {
-      poundsPerHour = parseFloat((this.custPerHour[value] * this.poundsPerCust).toFixed(1));
+      // calculate packaged coffee sold per hour
+      poundsPerHour = Math.round((this.custPerHour[value] * this.poundsPerCust) * 10) / 10;
       this.poundsPerHour.push(poundsPerHour);
       this.packagedPounds += poundsPerHour;
-    }
-  },
-
-  calcCupsPerPound: function() {
-    for (value in this.cupsPerHour) {
-      cupsInPounds = parseFloat((this.cupsPerHour[value] / 16).toFixed(1));
+      // calculate cups in terms of pounds
+      cupsInPounds = Math.round((this.cupsPerHour[value] / 16) * 10) / 10;
       this.cupsPerPound.push(cupsInPounds);
     }
   },
@@ -560,7 +519,7 @@ var seaTac = {
 
   calcTotalPoundsPerHour: function() {
     for (value in this.hours) {
-      var hourlyPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      var hourlyPounds = Math.round((this.cupsPerPound[value] + this.poundsPerHour[value]) * 10 ) / 10;
       this.totalPoundsPerHour.push(hourlyPounds);
       this.dailyPounds += hourlyPounds;
     }
@@ -611,9 +570,7 @@ var seaTac = {
 
   theBigOne: function() {
     this.avgCustPerHour();
-    this.calcCupsPerHour();
-    this.calcPoundsPerHour();
-    this.calcCupsPerPound();
+    this.calcHourlyValues();
     this.calcEmployeesPerHour();
     this.calcTotalPoundsPerHour();
     this.displayName();
@@ -622,7 +579,6 @@ var seaTac = {
     this.createListTotals();
   }
 };
-
 
 pikePlace.theBigOne();
 capHill.theBigOne();
