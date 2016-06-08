@@ -14,6 +14,7 @@ var pikePlace = {
   custPerHour: [],
   cupsPerHour: [],
   poundsPerHour: [],
+  cupsPerPound: [],
   employeesNeeded: [],
 
   avgCustPerHour: function() {
@@ -40,6 +41,13 @@ var pikePlace = {
     }
   },
 
+  calcCupsPerPound: function() {
+    for (value in this.cupsPerHour) {
+      cupsInPounds = parseFloat(((this.cupsPerHour[value] * 12) / 16).toFixed(1));
+      this.cupsPerPound.push(cupsInPounds);
+    }
+  },
+
   calcEmployeesPerHour: function() {
     for(value in this.custPerHour) {
       employees = Math.ceil(this.custPerHour[value] / 30);
@@ -60,6 +68,16 @@ var pikePlace = {
     child.id = 'list';
     parent.appendChild(child);
   },
+
+  createListItems: function() {
+    var parent = document.getElementById('list');
+    for (value in this.hours) {
+      var child = document.createElement('li');
+      // 6:00am: 86.4 lbs [23 customers, 27.6 cups (1.4 lbs), 85 lbs to-go]
+      child.textContent = this.hours[value] + ': ' + this.totalPounds + ' lbs [' + this.custPerHour[value] + ' customers, ' + this.cupsPerHour[value] + ' cups (' + this.cupsInPounds[value] + ' lbs), ',
+      parent.appendChild(child);
+    }
+  }
 };
 
 
@@ -75,8 +93,12 @@ pikePlace.calcPoundsPerHour();
 console.log(pikePlace.poundsPerHour);
 console.log(pikePlace.totalPounds);
 
+pikePlace.calcCupsPerPound();
+console.log(pikePlace.cupsPerPound);
+
 pikePlace.calcEmployeesPerHour();
 console.log(pikePlace.employeesNeeded);
 
 pikePlace.displayName();
 pikePlace.createList();
+pikePlace.createListItems();
