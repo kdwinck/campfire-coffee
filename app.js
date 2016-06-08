@@ -16,6 +16,7 @@ var pikePlace = {
   poundsPerHour: [],
   cupsPerPound: [],
   employeesNeeded: [],
+  totalPoundsPerHour: [],
 
   avgCustPerHour: function() {
     for (item in this.hours) {
@@ -49,9 +50,16 @@ var pikePlace = {
   },
 
   calcEmployeesPerHour: function() {
-    for(value in this.custPerHour) {
+    for (value in this.custPerHour) {
       employees = Math.ceil(this.custPerHour[value] / 30);
       this.employeesNeeded.push(employees);
+    }
+  },
+
+  calcTotalPoundsPerHour: function() {
+    for (value in this.hours) {
+      var totalPounds = parseFloat((this.cupsPerPound[value] + this.poundsPerHour[value]).toFixed(1));
+      this.totalPoundsPerHour.push(totalPounds);
     }
   },
 
@@ -74,7 +82,7 @@ var pikePlace = {
     for (value in this.hours) {
       var child = document.createElement('li');
       // 6:00am: 86.4 lbs [23 customers, 27.6 cups (1.4 lbs), 85 lbs to-go]
-      child.textContent = this.hours[value] + ': ' + this.totalPounds + ' lbs [' + this.custPerHour[value] + ' customers, ' + this.cupsPerHour[value] + ' cups (' + this.cupsInPounds[value] + ' lbs), ',
+      child.textContent = this.hours[value] + ': ' + this.totalPoundsPerHour[value] + ' lbs [' + this.custPerHour[value] + ' customers, ' + this.cupsPerHour[value] + ' cups (' + this.cupsPerPound[value] + ' lbs), ' + this.poundsPerHour[value] + ' lbs-to-go]',
       parent.appendChild(child);
     }
   }
@@ -82,22 +90,34 @@ var pikePlace = {
 
 
 pikePlace.avgCustPerHour();
+console.log('customers per hour');
 console.log(pikePlace.custPerHour);
+console.log('total customers');
 console.log(pikePlace.totalCustomers);
 
 pikePlace.calcCupsPerHour();
+console.log('cups per hour');
 console.log(pikePlace.cupsPerHour);
+console.log('total cups');
 console.log(pikePlace.totalCups);
 
 pikePlace.calcPoundsPerHour();
+console.log('pounds per hour');
 console.log(pikePlace.poundsPerHour);
+console.log('total pounds');
 console.log(pikePlace.totalPounds);
 
 pikePlace.calcCupsPerPound();
+console.log('cups sold in pounds');
 console.log(pikePlace.cupsPerPound);
 
 pikePlace.calcEmployeesPerHour();
+console.log('employees needed each hour');
 console.log(pikePlace.employeesNeeded);
+
+pikePlace.calcTotalPoundsPerHour();
+console.log('total pounds per hour');
+console.log(pikePlace.totalPoundsPerHour);
 
 pikePlace.displayName();
 pikePlace.createList();
