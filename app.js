@@ -1,5 +1,8 @@
+// create global variable for hours of operation
+var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
+
 // create constructor function to build each coffee stand
-function CoffeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust) {
+function CoffeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust, hours) {
 
   this.name = name;
   this.minCust = minCust;
@@ -7,7 +10,7 @@ function CoffeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust) {
   this.cupsPerCust = cupsPerCust;
   this.poundsPerCust = poundsPerCust;
 
-  this.hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
+  this.hours = hours;
   this.totalCustomers = 0;
   this.totalCups = 0;
   this.packagedPounds = 0;
@@ -116,17 +119,46 @@ function CoffeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust) {
   };
 }
 
-var pikePlace = new CoffeStand('Pike Place Market', 14, 35, 1.2, .34);
-var capHill = new CoffeStand('Capitol Hill', 12, 28, 3.2, .03);
-var seattleLibrary = new CoffeStand('Seattle Public Library', 9, 45, 2.6, .02);
-var southLakeUnion = new CoffeStand('South Lake Union', 5, 18, 1.3, .04);
-var seaTac = new CoffeStand('Sea-Tac Airport', 28, 44, 1.1, .41);
+var pikePlace = new CoffeStand('Pike Place Market', 14, 35, 1.2, .34, hours);
+var capHill = new CoffeStand('Capitol Hill', 12, 28, 3.2, .03, hours);
+// var seattleLibrary = new CoffeStand('Seattle Public Library', 9, 45, 2.6, .02, hours);
+// var southLakeUnion = new CoffeStand('South Lake Union', 5, 18, 1.3, .04, hours);
+// var seaTac = new CoffeStand('Sea-Tac Airport', 28, 44, 1.1, .41, hours);
 
 pikePlace.theBigOne();
 capHill.theBigOne();
-seattleLibrary.theBigOne();
-southLakeUnion.theBigOne();
-seaTac.theBigOne();
+// seattleLibrary.theBigOne();
+// southLakeUnion.theBigOne();
+// seaTac.theBigOne();
+
+// create function that will make table for coffee data
+function createPoundsTable() {
+  var main = document.getElementById('main');
+  var table = document.createElement('table');
+  table.id = 'poundsTable';
+  main.appendChild(table);
+};
+
+// create function to make table header row
+function createCoffeTableHeader() {
+  var table = document.getElementById('poundsTable');
+  var header = document.createElement('thead');
+  table.appendChild(header);        // make table header row
+  var data = document.createElement('td');
+  data.textContent = '';
+  header.appendChild(data);         // append first cell
+  data = document.createElement('td');
+  data.textContent = 'Daily Location Total';
+  header.appendChild(data);        // append second cell
+  for (index in hours) {
+    data = document.createElement('td');
+    data.textContent = hours[index];
+    header.appendChild(data);      // append each hour to a new cell
+  }
+};
+
+createPoundsTable(); //create empty table
+createCoffeTableHeader(); //create header row
 
 // loop through hourly totals and add values to new global array to get hourly totals for all
 // stores combined.
