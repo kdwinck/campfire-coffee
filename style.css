@@ -4,4 +4,16 @@ table {
 
 td {
   border: 1px solid black;
+  text-align: center;
+  padding: 5px;
+  height: 50px;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+#rowHeader {
+  background-color: white;
+  font-weight: bold;
 }

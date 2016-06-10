@@ -101,7 +101,6 @@ CoffeeStand.prototype.theBigOne = function() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 var pikePlace = new CoffeeStand('Pike Place Market', 14, 35, 1.2, .34, hours);
 var capHill = new CoffeeStand('Capitol Hill', 12, 28, 3.2, .03, hours);
 var seattleLibrary = new CoffeeStand('Seattle Public Library', 9, 45, 2.6, .02, hours);
@@ -126,6 +125,7 @@ function createCoffeeTable() {
 function createCoffeeHeader() {
   var table = document.getElementById('coffeeTable');
   var header = document.createElement('tr');
+  header.id = 'rowHeader';
   table.appendChild(header);        // make table header row
   var data = document.createElement('td');
   data.textContent = '';
@@ -160,7 +160,7 @@ function createCoffeeTotalsRow() {
 ///// create coffee table /////////////////
 
 createCoffeeTable(); //create empty table
-createCoffeeHeader(); //create header ro
+createCoffeeHeader(); //create header row
 for (var index in allStores) {
   allStores[index].createCoffeeRow();
 }
