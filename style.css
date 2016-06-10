@@ -1,5 +1,6 @@
 table {
   border-collapse: collapse;
+  margin-bottom: 100px;
 }
 
 td {
@@ -7,6 +8,7 @@ td {
   text-align: center;
   padding: 5px;
   height: 50px;
+  width: 50px;
 }
 
 tr:nth-child(odd) {

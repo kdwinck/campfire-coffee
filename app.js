@@ -113,6 +113,14 @@ seattleLibrary.theBigOne();
 southLakeUnion.theBigOne();
 seaTac.theBigOne();
 
+// create function to make h1 tag for first table
+function createHeaderTag(textContent) {
+  var main = document.getElementById('main');
+  var headTag = document.createElement('h1');
+  headTag.textContent = textContent;
+  main.appendChild(headTag);
+}
+
 // create function that will make table for coffee data
 function createCoffeeTable() {
   var main = document.getElementById('main');
@@ -159,6 +167,7 @@ function createCoffeeTotalsRow() {
 
 ///// create coffee table /////////////////
 
+createHeaderTag('Beans Needed By Location Each Day');
 createCoffeeTable(); //create empty table
 createCoffeeHeader(); //create header row
 for (var index in allStores) {
@@ -166,4 +175,6 @@ for (var index in allStores) {
 }
 createCoffeeTotalsRow(); //create coffee table totals row
 
-//////////////////////////////////////////
+///// create employee table ////////////////
+
+createHeaderTag('Baristas Needed By Location Each Day');
