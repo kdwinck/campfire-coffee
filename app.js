@@ -1,4 +1,4 @@
-// create global variables for hours of operation, combined daily pounds for all stores, and combined hourly pounds for all stores
+// create global variables
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
 var allStores = [];
 var allStoresDailyPounds = 0;
@@ -6,7 +6,7 @@ var allStoresHourlyPounds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var allStoresDailyEmploy = 0;
 var allStoresHourlyEmploy = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-// create constructor function to build each coffee stand
+// create coffee stand constructor function
 function CoffeeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust, hours) {
   this.name = name;
   this.minCust = minCust;
@@ -81,33 +81,23 @@ CoffeeStand.prototype.calcTotalPoundsPerHour = function() {
 CoffeeStand.prototype.createCoffeeRow = function () {
   var table = document.getElementById('coffeeTable');
   var row = document.createElement('tr');
-  var cell = document.createElement('td');
-  // create first cell with location name
-  cell.textContent = this.name;
-  row.appendChild(cell);
-  cell = document.createElement('td');
-  // create second cell with daily pounds total
-  cell.textContent = Math.round(this.dailyPounds * 10) / 10;
-  row.appendChild(cell);
-  // create all hourly total cells for row
-  for (var index in hours) {
-    cell = document.createElement('td');
+  this.totalPoundsPerHour.unshift(Math.round(this.dailyPounds * 10) / 10);
+  this.totalPoundsPerHour.unshift(this.name);
+  for (var index in this.totalPoundsPerHour) {
+    var cell = document.createElement('td');
     cell.textContent = this.totalPoundsPerHour[index];
     row.appendChild(cell);
   }
   table.appendChild(row);
+  console.log(this.totalPoundsPerHour);
 };
 
 CoffeeStand.prototype.createEmployeeRow = function () {
   var table = document.getElementById('employeeTable');
   var row = document.createElement('tr');
-  var cell = document.createElement('td');
-  cell.textContent = this.name;
-  row.appendChild(cell);
-  cell = document.createElement('td');
-  cell.textContent = this.dailyEmploy;
-  row.appendChild(cell);
-  for (var index in hours) {
+  this.employeesNeeded.unshift(Math.ceil(this.dailyEmploy));
+  this.employeesNeeded.unshift(this.name);
+  for (var index in this.employeesNeeded) {
     cell = document.createElement('td');
     cell.textContent = this.employeesNeeded[index];
     row.appendChild(cell);
@@ -115,7 +105,7 @@ CoffeeStand.prototype.createEmployeeRow = function () {
   table.appendChild(row);
 };
 
-CoffeeStand.prototype.theBigOne = function() {
+CoffeeStand.prototype.methodCaller = function() {
   this.avgCustPerHour();
   this.calcHourlyValues();
   this.calcEmployeesPerHour();
@@ -130,14 +120,14 @@ var seattleLibrary = new CoffeeStand('Seattle Public Library', 9, 45, 2.6, .02, 
 var southLakeUnion = new CoffeeStand('South Lake Union', 5, 18, 1.3, .04, hours);
 var seaTac = new CoffeeStand('Sea-Tac Airport', 28, 44, 1.1, .41, hours);
 
-pikePlace.theBigOne();
-capHill.theBigOne();
-seattleLibrary.theBigOne();
-southLakeUnion.theBigOne();
-seaTac.theBigOne();
+pikePlace.methodCaller();
+capHill.methodCaller();
+seattleLibrary.methodCaller();
+southLakeUnion.methodCaller();
+seaTac.methodCaller();
 
-// create function to make h1 tag for first table
-function createHeaderTag(textContent) {
+// makes h1 tag for a table
+function createTableTitle(textContent) {
   var main = document.getElementById('main');
   var headTag = document.createElement('h1');
   headTag.textContent = textContent;
@@ -158,17 +148,15 @@ function createHeaderRow(tableId, textContent) {
   var header = document.createElement('tr');
   header.id = 'rowHeader';
   table.appendChild(header);        // make table header row
-  var data = document.createElement('td');
-  data.textContent = '';
-  header.appendChild(data);         // append first cell
-  data = document.createElement('td');
-  data.textContent = textContent;
-  header.appendChild(data);        // append second cell
+  hours.unshift(textContent);
+  hours.unshift('');
   for (index in hours) {
     data = document.createElement('td');
     data.textContent = hours[index];
     header.appendChild(data);      // append each hour to a new cell
   }
+  hours.shift();
+  hours.shift();
 };
 
 function createCoffeeTotalsRow() {
@@ -177,9 +165,7 @@ function createCoffeeTotalsRow() {
   var cell = document.createElement('td');
   cell.textContent = 'Totals';
   row.appendChild(cell);
-  cell = document.createElement('td');
-  cell.textContent = Math.round(allStoresDailyPounds * 10) / 10;
-  row.appendChild(cell);
+  allStoresHourlyPounds.unshift(Math.round(allStoresDailyPounds * 10) / 10);
   for (var index in allStoresHourlyPounds) {
     cell = document.createElement('td');
     cell.textContent = Math.round(allStoresHourlyPounds[index] * 10) / 10;
@@ -207,7 +193,7 @@ function createEmployTotalsRow() {
 
 ///// create coffee table /////////////////
 function makeCoffeeTable() {
-  createHeaderTag('Beans Needed By Location Each Day');
+  createTableTitle('Beans Needed By Location Each Day');
   createTable('coffeeTable'); //create empty table
   createHeaderRow('coffeeTable', 'Daily Location Total'); //create header row
   for (var index in allStores) {
@@ -218,7 +204,7 @@ function makeCoffeeTable() {
 
 ///// create employee table ////////////////
 function makeEmployeeTable() {
-  createHeaderTag('Baristas Needed By Location Each Day');
+  createTableTitle('Baristas Needed By Location Each Day');
   createTable('employeeTable');
   createHeaderRow('employeeTable', 'Total');
   for (var index in allStores) {
