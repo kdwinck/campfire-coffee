@@ -99,6 +99,8 @@ seattleLibrary.methodCaller();
 southLakeUnion.methodCaller();
 seaTac.methodCaller();
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // makes h1 tag for a table
 function createTableTitle(textContent) {
   var main = document.getElementById('main');
@@ -189,6 +191,8 @@ function createEmployTotalsRow() {
   }
   table.appendChild(row);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///// create coffee table /////////////////
 function makeCoffeeTable() {
