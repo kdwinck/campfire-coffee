@@ -24,6 +24,8 @@ h2 {
 h3 {
   text-align: center;
   font-size: 24px;
+  background-color: #082901;
+  border-radius: 18%;
 }
 
 section {
@@ -90,4 +92,20 @@ ul {
   margin: 10px;
   text-align: center;
   font-size: 35px;
+}
+
+#family {
+  float: right;
+  padding: 10px;
+}
+
+#AboutUs p {
+  display: inline-block;
+  width: 50%;
+}
+
+#AboutHeader {
+  width: auto;
+  margin: auto;
+  /*display: inline-block;*/
 }
