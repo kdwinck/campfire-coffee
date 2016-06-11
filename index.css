@@ -1,4 +1,29 @@
+* {
+  border: 1px solid black;
+}
+
 header {
   background-color: #3c2200;
   height: 300px;
+  margin-bottom: 5px;
+}
+
+section {
+  height: 1000px;
+  margin: 0px;
+  padding: 0px;
+}
+
+article {
+  background-color: grey;
+  width: 75%;
+  height: inherit;
+  display: inline-block;
+}
+
+aside {
+  background-color: green;
+  height: inherit;
+  display: inline-block;
+  width: 24%;
 }
