@@ -115,7 +115,7 @@ function createTable(tableId) {
   var table = document.createElement('table');
   table.id = tableId;
   main.appendChild(table);
-};
+}
 
 // create function to make table header row
 function createHeaderRow(tableId, textContent) {
@@ -132,7 +132,7 @@ function createHeaderRow(tableId, textContent) {
   }
   hours.shift();
   hours.shift();
-};
+}
 
 function createCoffeeRow(tableId, object) {
   var table = document.getElementById(tableId);
@@ -145,7 +145,7 @@ function createCoffeeRow(tableId, object) {
     row.appendChild(cell);
   }
   table.appendChild(row);
-};
+}
 
 function createCoffeeTotalsRow() {
   var table = document.getElementById('coffeeTable');
@@ -173,7 +173,7 @@ function createEmployeeRow(tableId, object) {
     row.appendChild(cell);
   }
   table.appendChild(row);
-};
+}
 
 function createEmployTotalsRow() {
   var table = document.getElementById('employeeTable');
@@ -203,7 +203,7 @@ function makeCoffeeTable() {
     createCoffeeRow('coffeeTable', allStores[index]);
   }
   createCoffeeTotalsRow(); //create coffee table totals row
-};
+}
 
 ///// create employee table ////////////////
 function makeEmployeeTable() {
@@ -214,7 +214,16 @@ function makeEmployeeTable() {
     createEmployeeRow('employeeTable', allStores[index]);
   }
   createEmployTotalsRow();
-};
+}
 
 makeCoffeeTable();
 makeEmployeeTable();
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function createStore() {
+  // code to create new store
+}
+
+var newStore = document.getElementById('makeStore');
+newStore.onclick = createStore;
