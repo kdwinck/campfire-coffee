@@ -16,6 +16,15 @@ fieldset {
   margin-bottom: 100px;
 }
 
+legend {
+  font-size: 24px;
+}
+
+h1 {
+  font-size: 32px;
+  text-shadow: 2px 2px 1px gray;
+}
+
 tr:nth-child(odd) {
   background-color: lightgray;
 }
@@ -35,6 +44,9 @@ td:hover {
   width: 150px;
   height: 50px;
   font-size: 30px;
+  font-family: monospace;
+  border-radius: 5%;
+  box-shadow: 5px 5px 1px gray;
 }
 
 #makeStore:hover {

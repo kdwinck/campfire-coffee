@@ -229,7 +229,7 @@ makeEmployeeTable();
 function createStore(event) {
   event.preventDefault();
 
-  // get values
+  // get values - convert number inputs to floats
   var storeName = event.target.storeName.value;
   var minCust = parseFloat(event.target.minCust.value);
   var maxCust = parseFloat(event.target.maxCust.value);
