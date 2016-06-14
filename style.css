@@ -31,7 +31,10 @@ td:hover {
 }
 
 #makeStore {
-  background-color: red;
+  background-color: #21e6f2;
+  width: 150px;
+  height: 50px;
+  font-size: 30px;
 }
 
 #makeStore:hover {
@@ -39,5 +42,5 @@ td:hover {
 }
 
 #makeStore:active {
-  background-color: green;
+  background-color: #ffc634;
 }
