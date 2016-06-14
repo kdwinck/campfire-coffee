@@ -103,18 +103,18 @@ seaTac.methodCaller();
 
 // makes h1 tag for a table
 function createTableTitle(textContent) {
-  var main = document.getElementById('main');
+  var tableSection = document.getElementById('table-data');
   var headTag = document.createElement('h1');
   headTag.textContent = textContent;
-  main.appendChild(headTag);
+  tableSection.appendChild(headTag);
 }
 
 // create function that will make table
 function createTable(tableId) {
-  var main = document.getElementById('main');
+  var tableSection = document.getElementById('table-data');
   var table = document.createElement('table');
   table.id = tableId;
-  main.appendChild(table);
+  tableSection.appendChild(table);
 }
 
 // create function to make table header row
@@ -145,6 +145,8 @@ function createCoffeeRow(tableId, object) {
     row.appendChild(cell);
   }
   table.appendChild(row);
+  object.totalPoundsPerHour.shift();
+  object.totalPoundsPerHour.shift();
 }
 
 function createCoffeeTotalsRow() {
@@ -160,6 +162,7 @@ function createCoffeeTotalsRow() {
     row.appendChild(cell);
   }
   table.appendChild(row);
+  allStoresHourlyPounds.shift();
 }
 
 function createEmployeeRow(tableId, object) {
@@ -173,6 +176,8 @@ function createEmployeeRow(tableId, object) {
     row.appendChild(cell);
   }
   table.appendChild(row);
+  object.employeesNeeded.shift();
+  object.employeesNeeded.shift();
 }
 
 function createEmployTotalsRow() {
@@ -221,9 +226,40 @@ makeEmployeeTable();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createStore() {
-  // code to create new store
+function createStore(event) {
+  event.preventDefault();
+
+  // get values
+  var storeName = event.target.storeName.value;
+  var minCust = parseFloat(event.target.minCust.value);
+  var maxCust = parseFloat(event.target.maxCust.value);
+  var cupsPer = parseFloat(event.target.cupsPer.value);
+  var poundsPer = parseFloat(event.target.poundsPer.value);
+
+  // instantiate a new item Object
+  var newLocation = new CoffeeStand(storeName, minCust, maxCust, cupsPer, poundsPer, hours);
+
+  // call methods of new location
+  newLocation.methodCaller();
+
+  // clear the data in the table section
+  var section = document.getElementById('table-data');
+  section.innerHTML = '';
+
+  // recreate the tables
+  makeCoffeeTable();
+  makeEmployeeTable();
+
+  // clear the form
+  event.target.storeName.value = '';
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.cupsPer.value = null;
+  event.target.poundsPer.value = null;
 }
 
-var newStore = document.getElementById('makeStore');
-newStore.onclick = createStore;
+var newStore = document.getElementById('form');
+
+newStore.addEventListener('submit', createStore);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

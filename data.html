@@ -6,19 +6,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body id="main">
-    <fieldset>
-      <label>Location: <input type="text" name="storename">
-      <br/ >
-      <label>Minimum Customers: <input type="text" name="minCust" maxlength="3">
-      <br/ >
-      <label>Maximum Customers: <input type="text" name="maxCust" maxlength="3">
-      <br/ >
-      <label>Average Cups Per Customer: <input type="text" name="cupsPer" maxlength="5">
-      <br/ >
-      <label>Average Packages Per Customer: <input type="text" name="poundsPerCust" maxlength="5">
-      <br/ >
-      <input id="makeStore" type="submit" name="submit" value="Submit">
-    </fieldset>
+
+    <form id="form">
+      <fieldset>
+        <legend>Add A Location</legend>
+        <label for="storeName">Location: <input type="text" name="storeName">
+        <br/ >
+        <label for="minCust">Minimum Customers: <input type="number" name="minCust" maxlength="3">
+        <label for="maxCust">Maximum Customers: <input type="number" name="maxCust" maxlength="3">
+        <br/ >
+        <label for="cupsPer">Average Cups Per Customer: <input type="number" name="cupsPer" maxlength="5">
+        <label for="poundsPer">Average Packages Per Customer: <input type="number" name="poundsPer" maxlength="5">
+        <br/ >
+        <div>&nbsp</div>
+        <input id="makeStore" type="submit" name="submit" value="Submit">
+      </fieldset>
+    </form>
+
+    <section id="table-data">
+    </section>
+
   <script type="text/javascript" src="app.js"> </script>
   </body>
 </html>

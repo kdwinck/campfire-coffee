@@ -12,7 +12,7 @@ td {
 }
 
 fieldset {
-  width: 400px;
+  width: 700px;
   margin-bottom: 100px;
 }
 
@@ -20,12 +20,24 @@ tr:nth-child(odd) {
   background-color: lightgray;
 }
 
+td:hover {
+  background-color: black;
+  color: white;
+}
+
 #rowHeader {
   background-color: white;
   font-weight: bold;
 }
 
-td:hover {
-  background-color: black;
-  color: white;
+#makeStore {
+  background-color: red;
+}
+
+#makeStore:hover {
+  cursor: pointer;
+}
+
+#makeStore:active {
+  background-color: green;
 }
