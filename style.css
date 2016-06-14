@@ -11,6 +11,10 @@ td {
   width: 50px;
 }
 
+fieldset {
+  width: 400px;
+}
+
 tr:nth-child(odd) {
   background-color: lightgray;
 }
