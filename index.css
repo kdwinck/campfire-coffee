@@ -1,4 +1,4 @@
-* {
+body {
   color: white;
 }
 
@@ -32,10 +32,11 @@ section {
   height: 1000px;
   margin: 0px;
   padding: 0px;
+  /*border: 1px solid black;*/
 }
 
 article {
-  background-color: #71ced4;
+  /*background-color: #71ced4;*/
   width: 74%;
   height: inherit;
   display: inline-block;
@@ -52,17 +53,25 @@ aside {
   margin-left: 2%;
 }
 
+ul {
+  list-style-type: square;
+  font-size: 16px;
+}
+
+.main {
+  color: black;
+}
+
+.right {
+  float: right;
+}
+
 .store {
   border-bottom-style: solid;
   border-color: white;
   height: auto;
   margin: 33px;
   padding-bottom: 25px;
-}
-
-ul {
-  list-style-type: square;
-  font-size: 16px;
 }
 
 #logo {
@@ -94,7 +103,7 @@ ul {
   font-size: 35px;
 }
 
-#family {
+#familyImg {
   float: right;
   padding: 10px;
 }
@@ -104,12 +113,12 @@ ul {
 }
 
 #AboutUs p {
-  display: inline-block;
-  width: 50%;
   font-size: 18px;
+  padding-left: 10px;
 }
 
 #AboutHeader {
-  width: auto;
-  margin: auto;
+  margin-left: 10px;
+  padding-left: auto;
+  display: inline;
 }
