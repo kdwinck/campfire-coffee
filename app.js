@@ -226,13 +226,26 @@ makeEmployeeTable();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function clearInputFields() {
+  event.target.storeName.value = '';
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.cupsPer.value = null;
+  event.target.poundsPer.value = null;
+}
+
+function clearTableData() {
+  var section = document.getElementById('table-data');
+  section.innerHTML = '';
+}
+
 function createStore(event) {
   event.preventDefault();
 
   // get values - convert number inputs to floats
   var storeName = event.target.storeName.value;
-  var minCust = parseFloat(event.target.minCust.value);
-  var maxCust = parseFloat(event.target.maxCust.value);
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
   var cupsPer = parseFloat(event.target.cupsPer.value);
   var poundsPer = parseFloat(event.target.poundsPer.value);
 
@@ -243,19 +256,12 @@ function createStore(event) {
   newLocation.methodCaller();
 
   // clear the data in the table section
-  var section = document.getElementById('table-data');
-  section.innerHTML = '';
-
+  clearTableData();
   // recreate the tables
   makeCoffeeTable();
   makeEmployeeTable();
-
   // clear the form
-  event.target.storeName.value = '';
-  event.target.minCust.value = null;
-  event.target.maxCust.value = null;
-  event.target.cupsPer.value = null;
-  event.target.poundsPer.value = null;
+  clearInputFields();
 }
 
 var newStore = document.getElementById('form');
