@@ -1,5 +1,6 @@
 // create global variables
 var hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm', '8:00pm'];
+var names = [];
 var allStores = [];
 var allStoresDailyPounds = 0;
 var allStoresHourlyPounds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -29,6 +30,7 @@ function CoffeeStand(name, minCust, maxCust, cupsPerCust, poundsPerCust, hours) 
   this.totalPoundsPerHour = [];
 
   allStores.push(this);
+  names.push(this.name);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +85,32 @@ CoffeeStand.prototype.methodCaller = function() {
   this.calcHourlyValues();
   this.calcEmployeesPerHour();
   this.calcTotalPoundsPerHour();
+};
+
+CoffeeStand.prototype.clearData = function() {
+  this.totalCustomers = 0;
+  this.totalCups = 0;
+  this.packagedPounds = 0;
+  this.dailyPounds = 0;
+  this.dailyEmploy = 0;
+
+  this.custPerHour = [];
+  this.cupsPerHour = [];
+  this.poundsPerHour = [];
+  this.cupsPerPound = [];
+  this.employeesNeeded = [];
+  this.totalPoundsPerHour = [];
+};
+
+CoffeeStand.prototype.subtractFromTotals = function() {
+  allStoresDailyPounds -= this.dailyPounds;
+  allStoresDailyEmploy -= this.dailyEmploy;
+  for (var i in this.poundsPerHour) {
+    allStoresHourlyPounds[i] -= this.totalPoundsPerHour[i];
+  }
+  for (var x in this.employeesNeeded) {
+    allStoresHourlyEmploy[x] -= this.employeesNeeded[x];
+  }
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,6 +267,7 @@ function clearTableData() {
   section.innerHTML = '';
 }
 
+// function to add or update store
 function createStore(event) {
   event.preventDefault();
 
@@ -250,18 +279,40 @@ function createStore(event) {
   var poundsPer = parseFloat(event.target.poundsPer.value);
 
   // instantiate a new item Object
-  var newLocation = new CoffeeStand(storeName, minCust, maxCust, cupsPer, poundsPer, hours);
+  if (names.indexOf(storeName) !== -1) {
+    for (var i in allStores) {
+      if (allStores[i].name === storeName) {
+        // update location values
+        allStores[i].minCust = parseInt(event.target.minCust.value);
+        allStores[i].maxCust = parseInt(event.target.maxCust.value);
+        allStores[i].cupsPerCust = parseFloat(event.target.cupsPer.value);
+        allStores[i].poundsPerCust = parseFloat(event.target.poundsPer.value);
+        // remove old data form the totals
+        allStores[i].subtractFromTotals();
+        // clear current store data
+        allStores[i].clearData();
+        // call all methods with new values
+        allStores[i].methodCaller();
 
-  // call methods of new location
-  newLocation.methodCaller();
-
-  // clear the data in the table section
-  clearTableData();
-  // recreate the tables
-  makeCoffeeTable();
-  makeEmployeeTable();
-  // clear the form
-  clearInputFields();
+        clearTableData();
+        makeCoffeeTable();
+        makeEmployeeTable();
+        clearInputFields();
+      }
+    }
+  } else {
+    // create new location
+    var newLocation = new CoffeeStand(storeName, minCust, maxCust, cupsPer, poundsPer, hours);
+    // call methods of new location
+    newLocation.methodCaller();
+    // clear the data in the table section
+    clearTableData();
+    // recreate the tables
+    makeCoffeeTable();
+    makeEmployeeTable();
+    // clear the form
+    clearInputFields();
+  }
 }
 
 var newStore = document.getElementById('form');
