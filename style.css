@@ -56,3 +56,11 @@ td:hover {
 #makeStore:active {
   background-color: #ffc634;
 }
+
+input[type='text'] {
+  background-color: lightgrey;
+}
+
+input[type='number'] {
+  background-color: lightgrey;
+}
