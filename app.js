@@ -267,6 +267,31 @@ function clearTableData() {
   section.innerHTML = '';
 }
 
+function updateStore(storeName, minCust, maxCust, cupsPer, poundsPer) {
+  for (var i in allStores) {
+    if (allStores[i].name === storeName) {
+      // update location values
+      allStores[i].minCust = minCust;
+      allStores[i].maxCust = maxCust;
+      allStores[i].cupsPerCust = cupsPer;
+      allStores[i].poundsPerCust = poundsPer;
+      // remove old data form the totals
+      allStores[i].subtractFromTotals();
+      // clear current store data
+      allStores[i].clearData();
+      // call all methods with new values
+      allStores[i].methodCaller();
+    }
+  }
+}
+
+function updateHtmlTables() {
+  clearTableData();
+  makeCoffeeTable();
+  makeEmployeeTable();
+  clearInputFields();
+}
+
 // function to add or update store
 function createStore(event) {
   event.preventDefault();
@@ -280,38 +305,12 @@ function createStore(event) {
 
   // instantiate a new item Object
   if (names.indexOf(storeName) !== -1) {
-    for (var i in allStores) {
-      if (allStores[i].name === storeName) {
-        // update location values
-        allStores[i].minCust = parseInt(event.target.minCust.value);
-        allStores[i].maxCust = parseInt(event.target.maxCust.value);
-        allStores[i].cupsPerCust = parseFloat(event.target.cupsPer.value);
-        allStores[i].poundsPerCust = parseFloat(event.target.poundsPer.value);
-        // remove old data form the totals
-        allStores[i].subtractFromTotals();
-        // clear current store data
-        allStores[i].clearData();
-        // call all methods with new values
-        allStores[i].methodCaller();
-
-        clearTableData();
-        makeCoffeeTable();
-        makeEmployeeTable();
-        clearInputFields();
-      }
-    }
+    updateStore(storeName, minCust, maxCust, cupsPer, poundsPer);
+    updateHtmlTables();
   } else {
-    // create new location
     var newLocation = new CoffeeStand(storeName, minCust, maxCust, cupsPer, poundsPer, hours);
-    // call methods of new location
     newLocation.methodCaller();
-    // clear the data in the table section
-    clearTableData();
-    // recreate the tables
-    makeCoffeeTable();
-    makeEmployeeTable();
-    // clear the form
-    clearInputFields();
+    updateHtmlTables();
   }
 }
 
