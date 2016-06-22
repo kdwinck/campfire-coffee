@@ -1,11 +1,19 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   color: white;
 }
 
 header {
+  display: flex;
+  flex-wrap: wrap;
   background-color: #83551e;
-  margin: 5px 0px;
-  height: auto;
+  margin-bottom: 50px;
 }
 
 h1 {
@@ -28,36 +36,39 @@ h3 {
   border-radius: 18%;
 }
 
-section {
-  height: 1000px;
-  margin: 0px;
-  padding: 0px;
-}
-
 article {
-  width: 74%;
+  width: 70%;
   height: inherit;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin: 5px 0px;
 }
 
 aside {
   background-color: #236718;
-  height: inherit;
-  float: right;
-  width: 24%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 2%;
 }
 
 ul {
-  list-style-type: square;
+  list-style-type: none;
   font-size: 16px;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .main {
+  display: flex;
+  flex-direction: column;
   color: black;
+  height: auto;
 }
 
 .right {
@@ -73,30 +84,28 @@ ul {
   border-color: white;
   height: auto;
   margin: 33px;
+  margin-top: 0px;
   padding-bottom: 25px;
 }
 
 #logo {
-  height: 300px;
-  width: 375px;
+  max-height: 100%;
+  max-width: 100%;
   margin: 0px;
   vertical-align: middle;
 }
 
 #headerImg {
-  display: inline-block;
-  height: auto;
-  width: auto;
+  height: 100%;
+  max-width: 100%;
   margin: 5px;
 }
 
 #quote {
   background-color: #593709;
-  display: inline-block;
   height: auto;
-  width: 60%;
+  width: 58%;
   margin: auto;
-  margin-left: 20px;
 }
 
 #quote p {
@@ -107,6 +116,7 @@ ul {
 
 #AboutUs {
   height: 33%;
+  width: 100%;
 }
 
 #AboutUs p {
@@ -134,4 +144,10 @@ ul {
   margin-right: 10px;
   padding-right: auto;
   display: inline;
+}
+
+#main {
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
 }
