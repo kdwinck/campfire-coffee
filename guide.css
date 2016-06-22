@@ -1,0 +1,116 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  margin: 0px 50px;
+  background-color: grey;
+}
+
+section {
+  flex-direction: column;
+  background-color: white;
+  margin: 50px 0px;
+  width: 40%;
+}
+
+hr {
+  color: black;
+  height: 1px;
+  width: auto;
+}
+
+div {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  border-radius: 100%;
+}
+
+article {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+section p {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 0px;
+  background-color: grey;
+  color: white;
+  width: 30%;
+}
+
+h2 {
+  margin-bottom: 0px;
+  text-decoration: underline;
+}
+
+h3 {
+  margin-bottom: 0px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-around;
+}
+
+#colors {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#typo {
+  display: flex;
+  width: auto;
+  margin-left: 20px;
+}
+
+#para {
+  width: 75%;
+  flex-direction: column;
+}
+
+#colors p {
+  font-size: 24px;
+}
+
+#typo p {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+#para p{
+  margin-top: 2px;
+  font-size: 16px;
+}
+
+#para #text {
+  font-size: 12px;
+}
+
+#color1 {
+  background-color: #83551e;
+}
+
+#color2 {
+  background-color: #593709;
+}
+
+#color3 {
+  background-color: #082901;
+}
+
+#color4 {
+  background-color: #236718;
+}
